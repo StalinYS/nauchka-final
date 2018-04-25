@@ -90,10 +90,7 @@ namespace nauchka
             var subList = from elem in elemList
                           select (string)elem.Element("subject");
            
-            foreach (var s in subList.ToList())
-            {
-                Console.WriteLine(s);
-            }
+            
            subject = subList.First();
 
             int year = DateTime.Now.Year;
