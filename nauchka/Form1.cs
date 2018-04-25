@@ -23,9 +23,9 @@ namespace nauchka
             if (dataGridView1.SelectedRows != null)
             {
                 string prepodfile= dataGridView1.SelectedRows[0].Cells["filename"].Value.ToString();
-                label1.Text = prepodfile;
+               
                 string lecturerName = dataGridView1.SelectedRows[0].Cells["name"].Value.ToString();
-                Group gr = new Group(label1.Text,lecturerName);
+                Group gr = new Group(prepodfile,lecturerName);
                 gr.Show();             
             }        
         }
@@ -36,7 +36,10 @@ namespace nauchka
             DataSet xmldata = new DataSet();
             xmldata.ReadXml("http://timetable.sbmt.by/xml/lecturer.xml");
             dataGridView1.DataSource = xmldata.Tables[0];
-
+            dataGridView1.Columns["filename"].Visible = false;
+            dataGridView1.Columns["name"].HeaderText = "Имя преподавателя";
+            dataGridView1.Columns["department"].HeaderText = "Кафедра";
+            dataGridView1.Columns["position"].HeaderText = "Должность";
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

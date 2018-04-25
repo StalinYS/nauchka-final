@@ -23,10 +23,18 @@ namespace nauchka
 
         private void Group_Load(object sender, EventArgs e)
         {
-            label1.Text = x;
+           
             DataSet group = new DataSet();
             group.ReadXml("http://timetable.sbmt.by/xml/group.xml");
             dataGridView1.DataSource = group.Tables[0];
+            dataGridView1.Columns["entranceyear"].Visible = false;
+            dataGridView1.Columns["filename"].Visible = false;
+            dataGridView1.Columns["xls"].Visible = false;
+            dataGridView1.Columns["year"].Visible = false;
+            dataGridView1.Columns["faculty"].HeaderText = "Факультет";
+            dataGridView1.Columns["form"].HeaderText = "Форма обучения";
+            dataGridView1.Columns["course"].HeaderText = "Курс";
+            dataGridView1.Columns["speciality"].HeaderText = "Специальность";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -35,11 +43,11 @@ namespace nauchka
             {
 
                 string groupfile = dataGridView1.SelectedRows[0].Cells["number"].Value.ToString();
-                label2.Text = groupfile;
+                
                 string course = dataGridView1.SelectedRows[0].Cells["course"].Value.ToString();
                 string spec = dataGridView1.SelectedRows[0].Cells["speciality"].Value.ToString();
 
-                Result r = new Result(label1.Text, label2.Text, course, lecName, spec);
+                Result r = new Result(x, groupfile, course, lecName, spec);
                 r.Show();
 
             }
